@@ -8,10 +8,10 @@ ADD https://github.com/lavalink-devs/Lavalink/releases/latest/download/Lavalink.
 # Copy config
 COPY application.yml .
 
-# Make plugins folder
+# Create plugins directory
 RUN mkdir /app/plugins
 
-# Download YouTube plugin (correct URL)
+# Download YouTube plugin v1.16.0
 ADD https://maven.lavalink.dev/releases/dev/lavalink/youtube/youtube-plugin/1.16.0/youtube-plugin-1.16.0.jar /app/plugins/youtube-plugin-1.16.0.jar
 
 EXPOSE 2333
