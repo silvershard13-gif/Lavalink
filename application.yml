@@ -3,19 +3,19 @@ server:
 
 lavalink:
   server:
-    password: "youshallnotpass"
+    password: "youshallnotpass"   # Set your own password
     sources:
-      youtube: false
-      bandcamp: true
+      youtube: false             # disable built-in YouTube
       soundcloud: true
+      bandcamp: true
       twitch: true
       vimeo: true
       http: true
 
-logging:
-  file:
-    path: ./logs/
-
 plugins:
-  - dependency: "dev.lavalink.youtube:youtube-plugin:1.8.0"
+  - dependency: "dev.lavalink.youtube:youtube-plugin:1.16.0"
     repository: "https://maven.lavalink.dev/releases"
+
+metrics:
+  prometheus:
+    enabled: false
