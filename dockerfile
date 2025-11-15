@@ -1,22 +1,19 @@
-# Use Java 17 runtime
 FROM eclipse-temurin:17-jre
 
 WORKDIR /app
 
-# Download latest Lavalink
+# Download Lavalink
 ADD https://github.com/lavalink-devs/Lavalink/releases/latest/download/Lavalink.jar lavalink.jar
 
-# Copy your config
+# Copy config
 COPY application.yml .
 
-# Create plugins directory
+# Make plugins folder
 RUN mkdir /app/plugins
 
-# Download latest YouTube plugin (1.16.0)
-ADD https://repo.lavalink.dev/releases/dev/lavalink/youtube/youtube-plugin/1.16.0/youtube-plugin-1.16.0.jar /app/plugins/
+# Download YouTube plugin (correct URL)
+ADD https://maven.lavalink.dev/releases/dev/lavalink/youtube/youtube-plugin/1.16.0/youtube-plugin-1.16.0.jar /app/plugins/youtube-plugin-1.16.0.jar
 
-# Expose Lavalink port
 EXPOSE 2333
 
-# Start Lavalink
 CMD ["java", "-jar", "lavalink.jar"]
