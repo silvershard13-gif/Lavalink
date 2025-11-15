@@ -5,7 +5,7 @@ lavalink:
   server:
     password: "youshallnotpass"   # Change this to your password
     sources:
-      youtube: false
+      youtube: true
       soundcloud: true
       bandcamp: true
       twitch: true
