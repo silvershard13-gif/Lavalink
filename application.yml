@@ -4,14 +4,13 @@ server:
 lavalink:
   server:
     password: "youshallnotpass"
-
-plugins:
-  youtube:
-    enabled: true
-    allowSearch: true
-    allowDirectPlayback: true
-    clients:
-      - MUSIC
+    sources:
+      youtube: true
+      soundcloud: true
+      bandcamp: true
+      twitch: true
+      vimeo: true
+      http: true
 
 metrics:
   prometheus:
