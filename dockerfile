@@ -3,8 +3,8 @@ FROM eclipse-temurin:17-jre
 
 WORKDIR /app
 
-# Download Lavalink v4 (replace with latest release if needed)
-ADD https://github.com/freyacodes/Lavalink/releases/download/4.0.0.0/Lavalink.jar lavalink.jar
+# Download Lavalink v4.1.1
+ADD https://github.com/lavalink-devs/Lavalink/releases/download/4.1.1/Lavalink.jar lavalink.jar
 
 # Install dependencies for yt-dlp in a virtual environment
 RUN apt-get update && apt-get install -y \
