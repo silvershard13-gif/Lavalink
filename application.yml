@@ -3,18 +3,15 @@ server:
 
 lavalink:
   server:
-    password: "youshallnotpass"   # Change this to your password
-    sources:
-      youtube: true
-      soundcloud: true
-      bandcamp: true
-      twitch: true
-      vimeo: true
-      http: true
+    password: "youshallnotpass"
 
 plugins:
-  - dependency: "dev.lavalink.youtube:youtube-plugin:1.16.0"
-    repository: "https://maven.lavalink.dev/releases"
+  youtube:
+    enabled: true
+    allowSearch: true
+    allowDirectPlayback: true
+    clients:
+      - MUSIC
 
 metrics:
   prometheus:
