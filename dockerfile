@@ -2,23 +2,25 @@ FROM eclipse-temurin:17-jdk
 
 WORKDIR /app
 
-# Copy entire repo (source files)
+# Copy source code
 COPY . .
 
-# Make sure the .git directory exists inside the container
-# Lavalink's build.gradle.kts REQUIRES this
-COPY .git .git
+# Create a fake .git directory so JGit does not crash
+RUN mkdir -p .git && \
+    echo "ref: refs/heads/main" > .git/HEAD && \
+    mkdir -p .git/refs/heads && \
+    echo "0000000000000000000000000000000000000000" > .git/refs/heads/main
 
 # Gradle permission
 RUN chmod +x ./gradlew
 
 # Build Lavalink
-RUN ./gradlew shadowJar
+RUN ./gradlew shadowJar --no-daemon
 
-# Move the jar so we know the name
+# Move output jar
 RUN mv build/libs/*-all.jar Lavalink.jar
 
-# Ensure application.yml is copied (overwrite if needed)
+# Copy config
 COPY application.yml /app/application.yml
 
 EXPOSE 2333
