@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: lavalink
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true
+    envVars:
+      - key: LAVALINK_PASSWORD
+        value: youshallnotpass
