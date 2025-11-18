@@ -1,9 +1,9 @@
 server:
-  port: 2333
+  port: ${PORT}
 
 lavalink:
   server:
-    password: "youshallnotpass"
+    password: ${LAVALINK_PASSWORD}
     sources:
       youtube: true
       soundcloud: true
@@ -11,7 +11,9 @@ lavalink:
       twitch: true
       vimeo: true
       http: true
+    youtubeSearchEnabled: true
 
-metrics:
-  prometheus:
-    enabled: false
+logging:
+  file: logs/lavalink.log
+  level:
+    root: INFO
