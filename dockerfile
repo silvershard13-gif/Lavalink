@@ -1,27 +1,26 @@
-# Use a lightweight OpenJDK 17 base image
-FROM eclipse-temurin:17-jre
+# Lavalink requires Java 17+
+FROM eclipse-temurin:17-jdk
 
+# Set working directory
 WORKDIR /app
 
-# Download Lavalink v4.1.1
-ADD https://github.com/lavalink-devs/Lavalink/releases/download/4.1.1/Lavalink.jar lavalink.jar
+# Copy the entire source code from your repo
+COPY . .
 
-# Install dependencies for yt-dlp in a virtual environment
-RUN apt-get update && apt-get install -y \
-    python3-venv \
-    python3-pip \
-    ffmpeg \
-    && python3 -m venv /opt/yt-dlp-venv \
-    && /opt/yt-dlp-venv/bin/pip install --upgrade pip yt-dlp \
-    && ln -s /opt/yt-dlp-venv/bin/yt-dlp /usr/local/bin/yt-dlp \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+# Give Gradle permission to run
+RUN chmod +x ./gradlew
 
-# Copy Lavalink configuration
-COPY application.yml .
+# Build Lavalink with Gradle (shadowJar creates the runnable jar)
+RUN ./gradlew shadowJar
 
-# Expose Lavalink default port
+# Move the jar to a predictable name
+RUN mv build/libs/*-all.jar Lavalink.jar
+
+# Copy application.yml — overwrite if needed
+COPY application.yml /app/application.yml
+
+# Expose default (Render uses PORT env anyway)
 EXPOSE 2333
 
 # Start Lavalink
-CMD ["java", "-jar", "lavalink.jar"]
+CMD ["java", "-jar", "Lavalink.jar"]
