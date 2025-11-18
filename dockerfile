@@ -1,26 +1,26 @@
-# Lavalink requires Java 17+
 FROM eclipse-temurin:17-jdk
 
-# Set working directory
 WORKDIR /app
 
-# Copy the entire source code from your repo
+# Copy entire repo (source files)
 COPY . .
 
-# Give Gradle permission to run
+# Make sure the .git directory exists inside the container
+# Lavalink's build.gradle.kts REQUIRES this
+COPY .git .git
+
+# Gradle permission
 RUN chmod +x ./gradlew
 
-# Build Lavalink with Gradle (shadowJar creates the runnable jar)
+# Build Lavalink
 RUN ./gradlew shadowJar
 
-# Move the jar to a predictable name
+# Move the jar so we know the name
 RUN mv build/libs/*-all.jar Lavalink.jar
 
-# Copy application.yml — overwrite if needed
+# Ensure application.yml is copied (overwrite if needed)
 COPY application.yml /app/application.yml
 
-# Expose default (Render uses PORT env anyway)
 EXPOSE 2333
 
-# Start Lavalink
 CMD ["java", "-jar", "Lavalink.jar"]
