@@ -1,24 +1,29 @@
 server:
-  port: 2333
-  address: 0.0.0.0
+  port: ${PORT}  # this fixes Render auto-port problem
+
+logging:
+  level:
+    root: INFO
 
 lavalink:
   server:
-    password: "Euonia"
+    password: "Euonia"   # change this and also use it in your bot
     sources:
       youtube: true
-      bandcamp: true
+      youtubeMusic: true
+      spotify: false
       soundcloud: true
+      bandcamp: true
       twitch: true
       vimeo: true
-    bufferDurationMs: 400
-    frameBufferDurationMs: 1000
-    youtubeConfig:
-      clients: WEB
-    playerUpdateInterval: 5
+      http: true
+      local: false
 
-logging:
-  file:
-    path: ./logs/
-  level:
-    root: INFO
+    bufferDurationMs: 400
+    frameBufferDurationMs: 5000
+    gc-warnings: true
+
+plugins:
+  # YouTube plugin (recommended)
+  - dependency: "com.lavalink-devs:youtubesource:1.10.0"
+    repository: "https://maven.lavalink.dev/releases"
