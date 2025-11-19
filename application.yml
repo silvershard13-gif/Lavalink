@@ -4,7 +4,7 @@ server:
 
 lavalink:
   server:
-    password: "Euonia"  # Must match your bot
+    password: "Euonia"        # Must match your bot
     sources:
       youtube: true
       youtubeMusic: true
@@ -15,8 +15,10 @@ lavalink:
     youtubePlaylistLoadLimit: 6
     playerUpdateInterval: 5
     youtubeSearchEnabled: true
-    serverRegion: "us_central"         # adjust as needed
-
+    serverRegion: "eu_central"  # adjust as needed
+    youtube:
+      search:
+        timeout: 10000        # 10 seconds timeout for YouTube requests
 
 plugins:
   # YouTube plugin (recommended)
