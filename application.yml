@@ -1,27 +1,22 @@
 server:
-  port: ${PORT}  # this fixes Render auto-port problem
-
-logging:
-  level:
-    root: INFO
+  address: 0.0.0.0           # Listen on all interfaces
+  port: ${PORT}              # Render provides this automatically
 
 lavalink:
   server:
-    password: "Euonia"   # change this and also use it in your bot
+    password: "Euonia"  # Must match your bot
     sources:
       youtube: true
       youtubeMusic: true
-      spotify: false
       soundcloud: true
-      bandcamp: true
-      twitch: true
-      vimeo: true
       http: true
       local: false
+    bufferDurationMs: 4000
+    youtubePlaylistLoadLimit: 6
+    playerUpdateInterval: 5
+    youtubeSearchEnabled: true
+    serverRegion: "us_central"         # adjust as needed
 
-    bufferDurationMs: 400
-    frameBufferDurationMs: 5000
-    gc-warnings: true
 
 plugins:
   # YouTube plugin (recommended)
