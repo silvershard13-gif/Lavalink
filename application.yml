@@ -4,7 +4,7 @@ server:
 
 lavalink:
   server:
-    password: "Euonia
+    password: "Euonia"
     sources:
       youtube: true
       bandcamp: true
